@@ -1,0 +1,8 @@
+<div class="layout">
+    <nav class="layout_navbar">
+        <img class="layout_navbar_logo" src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg">
+        <pokemon-select-box (onOptionSelected)="onPokemonSelected($event)"></pokemon-select-box>
+        <pokemon-search-box></pokemon-search-box>
+    </nav>
+    <pokemon-info-display [selectedPokemonId]="selectedPokemon"></pokemon-info-display>
+</div>

@@ -1,0 +1,3 @@
+<select #pokeOption (change)="valueChanges(pokeOption.value)">
+    <option *ngFor="let pokemonName of pokemonNameList">{{pokemonName | titlecase}}</option>
+</select>

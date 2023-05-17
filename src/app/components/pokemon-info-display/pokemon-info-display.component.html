@@ -1,0 +1,8 @@
+<ul>
+    <li>{{selectedPokemon.name}}</li>
+    <li>{{selectedPokemon.dexNumber}}</li>
+    <li *ngFor="let type of selectedPokemon.type">{{type}}</li>
+    <li>{{selectedPokemon.stats?.hp}}</li>
+    <li>{{selectedPokemon.description}}</li>
+</ul>
+<img [src]="selectedPokemon.spriteUrl">
