@@ -1,8 +1,16 @@
 <div class="layout">
     <nav class="layout_navbar">
         <img class="layout_navbar_logo" src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg">
-        <pokemon-select-box (onOptionSelected)="onPokemonSelected($event)"></pokemon-select-box>
-        <pokemon-search-box></pokemon-search-box>
+        <div>
+            <div class="layout_navbar_select-box">
+                <pokemon-select-box [resetToDefault]="!!dexNumber"
+                                    (onOptionSelected)="pokemonSelected($event)">
+                </pokemon-select-box>
+            </div>
+            <pokemon-search-box [resetToDefault]="activePokemon"
+                                (onDexNumberEntered)="dexNumberEntered($event)">
+            </pokemon-search-box>
+        </div>
     </nav>
     <pokemon-info-display [selectedPokemonId]="selectedPokemon"></pokemon-info-display>
 </div>

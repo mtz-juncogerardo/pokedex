@@ -10,15 +10,25 @@ import { PokemonMapperService } from 'src/app/services/pokemon-mapper-service';
 export class HomeComponent implements OnInit {
 
   selectedPokemon: string;
+  activePokemon: boolean;
+  dexNumber: number;
 
   constructor() {
     this.selectedPokemon = '';
+    this.dexNumber = 0;
+    this.activePokemon = false;
   }
 
   ngOnInit(): void {
   }
 
-  onPokemonSelected(pokemonName: string) {
+  pokemonSelected(pokemonName: string) {
     this.selectedPokemon = pokemonName;
+    this.activePokemon = !!this.selectedPokemon
+  }
+
+  dexNumberEntered(dexNumber: number) {
+    this.selectedPokemon = dexNumber.toString();
+    this.dexNumber = dexNumber;
   }
 }

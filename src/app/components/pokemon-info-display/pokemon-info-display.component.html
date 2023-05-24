@@ -1,8 +1,20 @@
-<ul>
-    <li>{{selectedPokemon.name}}</li>
-    <li>{{selectedPokemon.dexNumber}}</li>
-    <li *ngFor="let type of selectedPokemon.type">{{type}}</li>
-    <li>{{selectedPokemon.stats?.hp}}</li>
-    <li>{{selectedPokemon.description}}</li>
-</ul>
-<img [src]="selectedPokemon.spriteUrl">
+
+<div class="wrapper">
+<div class="loader" *ngIf="loading">
+    <h3>Loading...</h3>
+</div>
+<div class="display" *ngIf="!loading">
+    <h1>{{ selectedPokemon.name | titlecase}}</h1>
+    <div class="display_container">
+        <div class="skill-bars">
+            <app-skill-bars *ngFor="let stat of getStats(selectedPokemon.stats)"
+                        [statName]="stat[0]"
+                        [statValue]="stat[1]"></app-skill-bars>
+        </div>
+        <img [src]="selectedPokemon.spriteUrl">
+    </div>
+    <div class="description">
+        <p>{{ selectedPokemon.description }}</p>
+    </div>
+</div>
+</div>

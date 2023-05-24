@@ -1,3 +1,5 @@
-<select #pokeOption (change)="valueChanges(pokeOption.value)">
-    <option *ngFor="let pokemonName of pokemonNameList">{{pokemonName | titlecase}}</option>
+<select [(ngModel)]="pokeOption" (change)="valueChanges(pokeOption)">
+    <option default value="">-- Select a Pokemon --</option>
+    <option *ngFor="let pokemonName of pokemonNameList"
+            [value]="pokemonName">{{pokemonName | titlecase}}</option>
 </select>

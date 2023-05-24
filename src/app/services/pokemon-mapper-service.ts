@@ -21,6 +21,9 @@ export class PokemonMapperService {
   }
 
   async getPokemonById(pokemonId: string): Promise<Pokemon> {
+    if (!pokemonId) {
+      return this.chosenPokemon;
+    }
     const pokemonData = await lastValueFrom(this.httpService.httpGet(this.getUrl + '/' + pokemonId.toLowerCase()));
     await this.mapPokemonData(pokemonData);
     return this.chosenPokemon;
@@ -38,8 +41,8 @@ export class PokemonMapperService {
       dexNumber: pokemonData.id,
       name: pokemonData.name,
       stats: this.getPokemonStats(pokemonData),
-      type: pokemonData.types.map((r: any) => r.type.name),
-      spriteUrl: pokemonData.sprites.other['official-artwork'].front_default,
+      type: pokemonData.types?.map((r: any) => r.type.name),
+      spriteUrl: pokemonData.sprites?.other['official-artwork'].front_default,
      // preEvolution: this.getPokemonEvolution(true),
      // evolution: this.getPokemonEvolution(false),
     }
@@ -49,9 +52,9 @@ export class PokemonMapperService {
 
   private async getPokemonDescription(pokemonData: any): Promise<string> {
     const pokemonSpeciesData = await lastValueFrom(this.httpService.httpGet(this.speciesUrl + '/' + pokemonData.name))
-    const pokemonDescriptions = pokemonSpeciesData.flavor_text_entries.filter((r: any) => r.language.name === 'es');
+    const pokemonDescriptions = pokemonSpeciesData.flavor_text_entries?.filter((r: any) => r.language.name === 'es');
     const randomDescriptionId = Math.floor(Math.random() * pokemonDescriptions.length);
-    return pokemonDescriptions[randomDescriptionId].flavor_text;
+    return pokemonDescriptions[randomDescriptionId]?.flavor_text;
   }
 
   private getPokemonEvolution(preEvolution: boolean): Pokemon {
@@ -60,12 +63,12 @@ export class PokemonMapperService {
 
   private getPokemonStats(pokemonData: any): PokemonStats {
     return {
-      hp: pokemonData.stats.find((r: any) => r.stat.name === 'hp').base_stat,
-      attack: pokemonData.stats.find((r: any) => r.stat.name === 'attack').base_stat,
-      spAttack: pokemonData.stats.find((r: any) => r.stat.name === 'special-attack').base_stat,
-      defense: pokemonData.stats.find((r: any) => r.stat.name === 'defense').base_stat,
-      spDefense: pokemonData.stats.find((r: any) => r.stat.name === 'special-defense').base_stat,
-      speed: pokemonData.stats.find((r: any) => r.stat.name === 'speed').base_stat,
+      hp: pokemonData.stats?.find((r: any) => r.stat.name === 'hp').base_stat,
+      attack: pokemonData.stats?.find((r: any) => r.stat.name === 'attack').base_stat,
+      spAttack: pokemonData.stats?.find((r: any) => r.stat.name === 'special-attack').base_stat,
+      defense: pokemonData.stats?.find((r: any) => r.stat.name === 'defense').base_stat,
+      spDefense: pokemonData.stats?.find((r: any) => r.stat.name === 'special-defense').base_stat,
+      speed: pokemonData.stats?.find((r: any) => r.stat.name === 'speed').base_stat,
     }
   }
 

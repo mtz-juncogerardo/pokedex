@@ -1,0 +1,10 @@
+<div class="stats-container">
+    <div class="stat">
+        <div class="stat-name">{{ statName.startsWith('sp') && statName !== 'speed' ? 'Special ' : statName | titlecase}}
+                               {{ statName.startsWith('sp') && statName !== 'speed' ? statName.slice(2) : '' | titlecase}}
+                                : {{ statValue }}</div>
+        <div class="stat-bar">
+          <div class="stat-fill" [style]="'width: ' + statValue +'%;'"></div> <!-- Set the width dynamically -->
+        </div>
+      </div>
+</div>

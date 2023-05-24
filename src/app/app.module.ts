@@ -8,6 +8,8 @@ import { HomeComponent } from './init/home/home/home.component';
 import { PokemonSelectBoxComponent } from './components/pokemon-select-box/pokemon-select-box.component';
 import { PokemonSearchBoxComponent } from './components/pokemon-search-box/pokemon-search-box.component';
 import { PokemonInfoDisplayComponent } from './components/pokemon-info-display/pokemon-info-display.component';
+import { FormsModule } from '@angular/forms';
+import { SkillBarsComponent } from './components/skill-bars/skill-bars.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import { PokemonInfoDisplayComponent } from './components/pokemon-info-display/p
     HomeComponent,
     PokemonSelectBoxComponent,
     PokemonSearchBoxComponent,
-    PokemonInfoDisplayComponent
+    PokemonInfoDisplayComponent,
+    SkillBarsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

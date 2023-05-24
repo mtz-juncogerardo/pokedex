@@ -1,0 +1,1 @@
+export const nameOfVar = (variable: any) => Object.keys(variable)[0];
